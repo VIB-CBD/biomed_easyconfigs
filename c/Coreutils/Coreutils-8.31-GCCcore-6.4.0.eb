@@ -1,0 +1,25 @@
+easyblock = 'ConfigureMake'
+
+name = "Coreutils"
+version = "8.31"
+
+homepage = 'http://www.gnu.org/software/coreutils/'
+description = """The GNU Core Utilities are the basic file, shell and text manipulation utilities of the
+ GNU operating system.  These are the core utilities which are expected to exist on every operating system.
+"""
+
+toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+toolchainopts = {'optarch': True, 'pic': True}
+
+source_urls = [GNU_SOURCE]
+sources = [SOURCELOWER_TAR_XZ]
+checksums = ['ff7a9c918edce6b4f4b2725e3f9b37b0c4d193531cac49a48b56c4d0d3a9e9fd']
+
+builddependencies = [('binutils', '2.32')]
+
+sanity_check_paths = {
+    'files': ['bin/sort', 'bin/echo', 'bin/du', 'bin/date', 'bin/true'],
+    'dirs': []
+}
+
+moduleclass = 'tools'

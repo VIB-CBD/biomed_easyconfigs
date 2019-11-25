@@ -1,0 +1,22 @@
+easyblock = 'ConfigureMake'
+
+name = 'libidn2'
+version = '2.2.0'
+
+homepage = 'http://www.gnu.org/software/libidn'
+description = """GNU Libidn is a fully documented implementation of the Stringprep, Punycode and IDNA specifications.
+Libidn's purpose is to encode and decode internationalized domain names."""
+
+toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+
+source_urls = ['https://ftp.gnu.org/gnu/libidn/']
+sources = [SOURCELOWER_TAR_GZ]
+checksums = ['fc734732b506d878753ec6606982bf7b936e868c25c30ddb0d83f7d7056381fe']
+
+builddependencies = [('binutils', '2.32', '', True)]
+
+sanity_check_paths = {
+    'files': ['bin/idn2', 'lib/libidn2.%s' % SHLIB_EXT],
+    'dirs': ['include'],
+}
+moduleclass = 'lib'

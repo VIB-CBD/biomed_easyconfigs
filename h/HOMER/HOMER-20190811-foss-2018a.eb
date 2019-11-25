@@ -1,0 +1,33 @@
+easyblock = 'Binary'
+
+name = 'HOMER'
+version = '4.10.4'
+
+homepage = 'http://homer.ucsd.edu/homer/'
+description = "Software for motif discovery and next generation sequencing analysis."
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = ['http://homer.ucsd.edu/homer/']
+sources = ['configureHomer.pl']
+checksums = ['71c91cfacc0ea092fad95de6186c8265f5b328415c4755e0c07eee0d5df3c035']
+
+builddependencies = [
+    ('binutils', '2.32'),
+    ('Python', '3.7.4'),
+    ('R-bundle-Bioconductor', '3.9', '-R-3.6.1-X11-20180604'),
+    ('SAMtools', '1.9'),
+    ('Perl', '5.28.1'),
+
+]
+extract_sources = False
+
+postinstallcmds = ["cd %(installdir)s && perl configureHomer.pl -install"]
+
+
+sanity_check_paths = {
+    'files': ['configureHomer.pl'],
+    'dirs': [],
+}
+
+moduleclass = 'tools'

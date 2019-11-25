@@ -1,0 +1,45 @@
+easyblock = 'ConfigureMake'
+
+name = 'EMBOSS'
+version = '6.6.0'
+
+homepage = 'http://emboss.sourceforge.net/'
+description = """EMBOSS is 'The European Molecular Biology Open Software Suite'
+. EMBOSS is a free Open Source software analysis package specially developed
+ for the needs of the molecular biology (e.g. EMBnet) user community."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = [
+    'ftp://emboss.open-bio.org/pub/EMBOSS/',
+    'ftp://emboss.open-bio.org/pub/EMBOSS/old/%(version_major_minor)s.0',
+]
+sources = [SOURCE_TAR_GZ]
+patches = ['%(name)s-%(version)s_disable-embossupdate.patch']
+checksums = [
+    '7184a763d39ad96bb598bfd531628a34aa53e474db9e7cac4416c2a40ab10c6e',  # EMBOSS-6.6.0.tar.gz
+    'eb48fa20206522ea035a42c9a891b95ea069d7f2e148ab52864df45a0df35020',  # EMBOSS-6.6.0_disable-embossupdate.patch
+]
+
+builddependencies = [('CMake', '3.15.2')]
+
+dependencies = [
+    ('X11', '20180604'),
+    ('libharu', '2.3.0'),
+    ('Java', '1.8.0', '', True),
+]
+
+configopts = " --with-hpdf=$EBROOTLIBHARU "
+
+# jemboss.jar does not build in a parallel build
+parallel = 1
+
+sanity_check_paths = {
+    'files': ['bin/%s' % x for x in ['seqret', 'aligncopy', 'profit', 'prophet']] +
+             ['lib/lib%s.a' % x for x in ['acd', 'ajax', 'ajaxdb', 'ajaxg', 'eexpat', 'ensembl',
+                                          'epcre', 'eplplot', 'ezlib', 'nucleus']] +
+             ['share/EMBOSS/jemboss/lib/jemboss.jar'],
+    'dirs': [],
+}
+
+moduleclass = 'bio'

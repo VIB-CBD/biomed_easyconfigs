@@ -1,0 +1,46 @@
+easyblock = 'ConfigureMake'
+
+name = 'SAMtools'
+commit = 'abc98cd'
+commit_date = '20190828'
+version = '1.9-%s' % commit_date
+
+homepage = 'http://www.htslib.org/'
+description = """SAM Tools provide various utilities for manipulating alignments in the SAM format, 
+ including sorting, merging, indexing and generating alignments in a per-position format."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+toolchainopts = {'pic': True}
+
+source_urls = ['https://github.com/samtools/%(namelower)s/archive/']
+sources = ['%s.tar.gz' % commit]
+checksums = ['07096d72c0c94fc05fb90b9eddea0365793e2fc6bd4fec78ec11c16b7a5f2785']
+
+builddependencies = [
+    # use same binutils version that was used when building GCCcore toolchain
+    ('binutils', '2.32'),
+    ('Autotools', '20180311'),
+    ('pkg-config', '0.29.2'),
+]
+
+preconfigopts = "if [ ! -f ./configure ]; then autoheader && autoconf -Wno-syntax; fi && "
+
+configopts = "--with-htslib=system "
+
+# The htslib component of SAMtools 1.9 uses zlib, bzip2 and lzma compression.
+# The latter is currently provided by XZ.
+dependencies = [
+    ('ncurses', '6.1'),
+    ('zlib', '1.2.11'),
+    ('bzip2', '1.0.8'),
+    ('XZ', '5.2.4'),
+    ('cURL', '7.65.3'),
+    ('HTSlib', '1.9-20190828'),
+]
+
+sanity_check_paths = {
+    'files': ["bin/samtools"],
+    'dirs': ["share/man/man1"],
+}
+
+moduleclass = 'bio'

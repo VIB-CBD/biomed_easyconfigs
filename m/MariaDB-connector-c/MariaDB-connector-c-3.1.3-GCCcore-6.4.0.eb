@@ -1,0 +1,41 @@
+easyblock = 'CMakeMake'
+
+name = 'MariaDB-connector-c'
+version = '3.1.3'
+
+homepage = 'https://downloads.mariadb.org/connector-c/'
+description = "MariaDB Connector/C is used to connect applications developed in C/C++ to MariaDB and MySQL databases."
+
+toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+
+source_urls = ['https://downloads.mariadb.org/f/connector-c-%(version)s']
+sources = ['mariadb-connector-c-%(version)s-src.tar.gz']
+checksums = ['8bcd0a7fe9487a08019a7e74b861cdf79068ace62a9b599384936a8f83d3170e']
+
+builddependencies = [('CMake', '3.15.2'), 
+                     ('binutils', '2.32'),
+]
+
+dependencies = [
+    ('OpenSSL', '1.1.1c'),
+    ('GnuTLS', '3.6.9'),
+    ('cURL', '7.65.3'),
+]
+
+configopts = "-DCMAKE_SHARED_LINKER_FLAGS='-fuse-ld=bfd' "
+configopts += "-DWITH_SSL='OPENSSL' "
+configopts += "-DCMAKE_C_FLAGS=-L$EBROOTOPENSSL/lib -I$EBROOTOPENSSL/include "
+
+
+sanity_check_paths = {
+    'files': ['lib/mariadb/libmariadbclient.a', 'lib/mariadb/libmariadb.%s' % SHLIB_EXT],
+    'dirs': ['include/mariadb'],
+}
+
+modextrapaths = {
+    'CPATH': ['include/mariadb'],
+    'LD_LIBRARY_PATH': ['lib/mariadb'],
+    'LIBRARY_PATH': ['lib/mariadb'],
+}
+
+moduleclass = 'lib'

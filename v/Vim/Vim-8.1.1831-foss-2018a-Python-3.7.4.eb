@@ -1,0 +1,40 @@
+# This file is an EasyBuild reciPY as per https://github.com/easybuilders/easybuild
+# Author: Pablo Escobar Lopez
+# Swiss Institute of Bioinformatics
+# Biozentrum - University of Basel
+
+easyblock = 'ConfigureMake'
+
+name = 'Vim'
+version = '8.1.1831'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'http://www.vim.org'
+description = """ Vim is an advanced text editor that seeks to provide the power 
+ of the de-facto Unix editor 'Vi', with a more complete feature set. """
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = ['https://github.com/vim/vim/archive']
+sources = ['v%(version)s.tar.gz']
+checksums = ['43a2562466df4fb08888fd8dabb105731e658128e81f40e8e9bb8d5dc91aad62']
+
+# this dependencies are required for --enable-pythoninterp=yes and --enable-perlinterp=yes to work
+# check enabled features running "vim --version" after compilation
+
+builddependencies = [('binutils', '2.32')]
+
+dependencies = [
+    ('Python', '3.7.4'),
+    ('Perl', '5.26.1'),
+    ('PCRE', '8.41')
+]
+
+configopts = '--with-features=huge --enable-python3interp=yes --enable-perlinterp=yes'
+
+sanity_check_paths = {
+    'files': ['bin/vim', 'bin/vimdiff'],
+    'dirs': [],
+}
+
+moduleclass = 'tools'

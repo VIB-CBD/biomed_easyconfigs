@@ -1,0 +1,25 @@
+easyblock = 'MakeCp'
+
+name = 'Subread'
+version = '1.6.5'
+
+homepage = 'http://%(namelower)s.sourceforge.net/'
+description = """High performance read alignment, quantification and mutation discovery"""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = [('https://sourceforge.net/projects/%(namelower)s/files/%(namelower)s-%(version)s', 'download')]
+sources = ['%(namelower)s-%(version)s-source.tar.gz']
+checksums = ['f4defb3debd01a67fb3d5219cddf9a518ed2e69405e26f3b8990d305bababd0d']
+
+start_dir = 'src'
+buildopts = '-f Makefile.Linux'
+
+files_to_copy = ['bin', 'annotation', 'doc', 'LICENSE', 'README.txt', 'src', 'test']
+
+sanity_check_paths = {
+    'files': ['LICENSE', 'README.txt'],
+    'dirs': ['bin', 'annotation', 'doc', 'src', 'test']
+}
+
+moduleclass = 'bio'

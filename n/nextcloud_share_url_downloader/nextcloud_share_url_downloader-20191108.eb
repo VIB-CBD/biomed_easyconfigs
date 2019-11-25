@@ -1,0 +1,27 @@
+easyblock = 'BinariesTarball'
+
+name = 'nextcloud_share_url_downloader'
+commit = 'a722727'
+commit_date = '20191106'
+version = '%s' % commit_date
+
+homepage = 'https://github.com/aertslab/nextcloud_share_url_downloader'
+description = """Download files from and list content of NextCloud (password protected)
+ share directly from the command line without needing a webbrowser."""
+
+toolchain = SYSTEM
+
+source_urls = ['https://github.com/aertslab/%(namelower)s/archive/']
+sources = ['%s.tar.gz' % commit]
+checksums = ['2f24f001ef4da62e04f1744c2db98d660c8be223c9850acd16fcc7c10f1bfcbe']
+
+postinstallcmds = [
+    "rm %(installdir)s/bin/{README.md,LICENSE}",
+]
+
+sanity_check_paths = {
+    'files': ['bin/nextcloud_share_url_downloader.sh'],
+    'dirs': [],
+}
+
+moduleclass = 'tools'

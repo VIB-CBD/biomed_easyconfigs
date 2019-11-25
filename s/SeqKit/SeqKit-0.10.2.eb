@@ -1,0 +1,21 @@
+easyblock = 'PackedBinary'
+
+name = 'SeqKit'
+version = '0.10.2'
+
+homepage = 'https://bioinf.shenwei.me/seqkit/'
+description = """SeqKit - a cross-platform and ultrafast toolkit for FASTA/Q file manipulation"""
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+source_urls = ['https://github.com/shenwei356/seqkit/releases/download/v%(version)s/']
+sources = ['seqkit_linux_amd64.tar.gz']
+checksums = ['cdd31667ebfe2fd35c64492066a6d867419bab6dc16ead85129a0816116fe348']
+
+
+sanity_check_paths = {
+    'files': ['seqkit'],
+    'dirs': []
+}
+
+moduleclass = 'tools'

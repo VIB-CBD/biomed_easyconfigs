@@ -1,0 +1,46 @@
+easyblock = 'PythonBundle'
+
+name = 'matlab_kernel'
+version = '20191022'
+versionsuffix = '-Python-%(pyver)s-Matlab-R2019-eb'
+
+homepage = 'https://github.com/Calysto/matlab_kernel'
+description = """A Matlab kernel for Jupyter"""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+dependencies = [
+    ('Python', '3.7.4', '', ('foss', '2018a')),
+    ('matplotlib', '3.1.1', '-Python-%(pyver)s'),
+    ('IPython', '7.8.0', '-Python-%(pyver)s'),
+    ('libxml2', '2.9.9'),
+    ('libxslt', '1.1.33'),
+    ('matlab', 'R2019-eb', '', True)
+
+]
+
+use_pip = True
+
+exts_default_options = {'source_urls': [PYPI_SOURCE]}
+
+# order is important!
+# package versions updated October 22nd 2019
+exts_list = [
+    ('ipyparallel', '6.2.4', {
+        'modulename': 'ipyparallel',
+        'source_urls': ['https://pypi.python.org/packages/source/i/ipyparallel'],
+        'checksums': ['76c7b028962b0ba762e4e45b450ee3a4353e7221526a8af812e817d7ef6ac065'],
+    }),    
+    ('metakernel', '0.24.3', {
+        'modulename': 'metakernel',
+        'source_urls': ['https://pypi.python.org/packages/source/m/metakernel'],
+        'checksums': ['0e3185a7285ce1e0321379093409a6b01a2cdb14a5ccb35696a77708293f262a'],
+    }),
+    ('matlab-kernel', '0.16.7', {
+        'source_tmpl': 'matlab_kernel-%(version)s.tar.gz',
+        'source_urls': ['https://pypi.python.org/packages/source/m/matlab-kernel'],
+        'checksums': ['b16890c0c12dbf6e3a5ab961058f50ffee85c246ec60fff86aecc3331debfa29'],
+    }),
+]
+
+moduleclass = 'lang'

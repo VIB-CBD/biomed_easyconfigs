@@ -1,0 +1,31 @@
+easyblock = 'CMakeMakeCp'
+
+name = 'popscle'
+version = '20191024_7d2e2e7'
+
+homepage = "https://github.com/statgen/popscle"
+description = """A suite of population scale analysis tools for single-cell genomics data including implementation of Demuxlet / Freemuxlet methods and auxilary tools."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = ['https://github.com/statgen/popscle/archive']
+sources = ['7d2e2e71e4da55a521f2e08dd4c39f1fedb4ef53.tar.gz']
+checksums = ['703df848fe0978ed2da84eb6e3660825042b891376b83e871f694f3cf72eb467']
+
+builddependencies = [
+    ('binutils', '2.32'),
+    ('CMake', '3.15.2'),
+]
+dependencies = [
+    ('HTSlib', '1.9'),
+    ('bzip2', '1.0.8'),
+]
+
+files_to_copy = ['bin']
+
+sanity_check_paths = {
+    'files': ['bin/popscle'],
+    'dirs': ['bin'],
+}
+
+moduleclass = 'bio'

@@ -1,0 +1,25 @@
+easyblock = 'CMakeMake'
+
+name = 'libharu'
+version = '2.3.0'
+
+homepage = 'http://libharu.org/'
+description = """libHaru is a free, cross platform, open source library for generating PDF files."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = [' https://github.com/libharu/libharu/archive/']
+sources = ['RELEASE_%s.tar.gz' % '_'.join(version.split('.'))]
+
+dependencies = [('libpng', '1.6.37')]
+
+builddependencies = [('CMake', '3.15.2')]
+
+parallel = 1
+
+sanity_check_paths = {
+    'files': ['lib/libhpdf.%s' % SHLIB_EXT],
+    'dirs': ['if', 'include', 'lib']
+}
+
+moduleclass = 'lib'

@@ -1,0 +1,102 @@
+easyblock = 'PythonBundle'
+
+name = 'BiomedBundle'
+version = '20190901'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'http://ipython.org/index.html'
+description = """IPython provides a rich architecture for interactive computing with:
+ Powerful interactive shells (terminal and Qt-based).
+ A browser-based notebook with support for code, text, mathematical expressions, inline plots and other rich media.
+ Support for interactive data visualization and use of GUI toolkits.
+ Flexible, embeddable interpreters to load into your own projects.
+ Easy to use, high performance tools for parallel computing."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+dependencies = [
+    ('Python', '3.7.4', '', ('foss', '2018a')),
+    ('matplotlib', '3.1.1', versionsuffix),
+    ('IPython', '7.8.0', versionsuffix),
+    ('libxml2', '2.9.9'),
+    ('libxslt', '1.1.33'),
+
+]
+
+use_pip = True
+
+exts_default_options = {'source_urls': [PYPI_SOURCE]}
+
+# order is important!
+# package versions updated September 4th 2019
+exts_list = [
+    ('scikit-learn', '0.21.3', {
+        'modulename': 'sklearn',
+        'source_urls': ['https://pypi.python.org/packages/source/s/scikit-learn'],
+        'checksums': ['eb9b8ebf59eddd8b96366428238ab27d05a19e89c5516ce294abc35cea75d003'],
+    }),
+    ('lxml', '4.4.1', {
+        'source_urls': ['https://pypi.python.org/packages/source/l/lxml'],
+        'checksums': ['c81cb40bff373ab7a7446d6bbca0190bccc5be3448b47b51d729e37799bb5692'],
+    }),
+    ('beautifulsoup4', '4.8.0', {
+        'modulename': 'bs4',
+        'source_urls': ['https://pypi.python.org/packages/source/b/beautifulsoup4'],
+        'checksums': ['25288c9e176f354bf277c0a10aa96c782a6a18a17122dba2e8cec4a97e03343b'],
+    }),
+    ('seaborn', '0.9.0', {
+        'source_urls': ['https://pypi.python.org/packages/source/s/seaborn'],
+        'checksums': ['76c83f794ca320fb6b23a7c6192d5e185a5fcf4758966a0c0a54baee46d41e2f'],
+    }),
+    ('patsy', '0.5.1', {
+        'source_urls': ['https://pypi.python.org/packages/source/p/patsy'],
+        'checksums': ['f115cec4201e1465cd58b9866b0b0e7b941caafec129869057405bfe5b5e3991'],
+    }),
+    ('statsmodels', '0.10.1', {
+        'source_urls': ['https://pypi.python.org/packages/source/s/statsmodels'],
+        'checksums': ['320659a80f916c2edf9dfbe83512d9004bb562b72eedb7d9374562038697fa10'],
+    }),
+    ('lazy-object-proxy', '1.4.2', {
+        'source_urls': ['https://pypi.python.org/packages/source/l/lazy-object-proxy'],
+        'checksums': ['fd135b8d35dfdcdb984828c84d695937e58cc5f49e1c854eb311c4d6aa03f4f1'],
+    }),
+    ('typed-ast', '1.4.0', {
+        'source_tmpl': 'typed_ast-%(version)s.tar.gz',
+        'source_urls': ['https://pypi.python.org/packages/source/t/typed-ast'],
+        'checksums': ['66480f95b8167c9c5c5c87f32cf437d585937970f3fc24386f313a4c97b44e34'],
+    }),
+    ('wrapt', '1.11.2', {
+        'source_urls': ['https://pypi.python.org/packages/source/w/wrapt'],
+        'checksums': ['565a021fd19419476b9362b05eeaa094178de64f8361e44468f9e9d7843901e1'],
+    }),
+    ('isort', '4.3.21', {
+        'source_urls': ['https://pypi.python.org/packages/source/i/isort'],
+        'checksums': ['54da7e92468955c4fceacd0c86bd0ec997b0e1ee80d97f67c35a78b719dccab1'],
+    }),
+    ('mccabe', '0.6.1', {
+        'source_urls': ['https://pypi.python.org/packages/source/m/mccabe'],
+        'checksums': ['dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f'],
+    }),
+    ('pylint', '2.3.1', {
+        'source_urls': ['https://pypi.python.org/packages/source/p/pylint'],
+        'checksums': ['723e3db49555abaf9bf79dc474c6b9e2935ad82230b10c1138a71ea41ac0fff1'],
+    }),
+    ('pytest', '5.1.2', {
+        'source_urls': ['https://pypi.python.org/packages/source/p/pytest'],
+        'checksums': ['b78fe2881323bd44fd9bd76e5317173d4316577e7b1cddebae9136a4495ec865'],
+    }),
+    ('filelock', '3.0.12', {
+        'source_urls': ['https://pypi.python.org/packages/source/f/filelock'],
+        'checksums': ['18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59'],
+    }),
+    ('toml', '0.10.0', {
+        'source_urls': ['https://pypi.python.org/packages/source/t/toml'],
+        'checksums': ['229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c'],
+    }),
+    ('tox', '3.14.0', {
+        'source_urls': ['https://pypi.python.org/packages/source/t/tox'],
+        'checksums': ['c4f6b319c20ba4913dbfe71ebfd14ff95d1853c4231493608182f66e566ecfe1'],
+    }),
+]
+
+moduleclass = 'lang'

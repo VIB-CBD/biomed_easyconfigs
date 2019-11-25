@@ -1,0 +1,64 @@
+# Built with EasyBuild version 3.9.3 on 2019-08-08_16-45-28
+easyblock = 'ConfigureMake'
+
+name = 'Tcl'
+version = '8.6.9'
+
+homepage = 'http://www.tcl.tk/'
+description = """
+ Tcl (Tool Command Language) is a very powerful but easy to learn dynamic
+ programming language, suitable for a very wide range of uses, including web
+ and desktop applications, networking, administration, testing and many more.
+"""
+
+toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+
+source_urls = ['http://prdownloads.sourceforge.net/%(namelower)s']
+sources = ['%(namelower)s%(version)s-src.tar.gz']
+checksums = ['ad0cd2de2c87b9ba8086b43957a0de3eb2eb565c7159d5f53ccbba3feb915f4e']
+
+builddependencies = [
+    ('binutils', '2.32'),
+]
+dependencies = [
+    ('zlib', '1.2.11'),
+]
+
+configopts = '--enable-threads EXTRA_INSTALL="install-private-headers"'
+
+runtest = 'test'
+postinstallcmds = ['ln -s %(installdir)s/bin/tclsh%(version_major)s.%(version_minor)s %(installdir)s/bin/tclsh']
+start_dir = 'unix'
+
+sanity_check_paths = {
+    'files': ['bin/tclsh%(version_major)s.%(version_minor)s', 'bin/tclsh', 'include/%(namelower)s.h', 'lib/libtcl%(version_major)s.%(version_minor)s.so', 'lib/tclConfig.sh', 'man/man1/tclsh.1'],
+    'dirs': ['share'],
+}
+
+moduleclass = 'lang'
+
+# Build statistics
+buildstats = [{
+    "build_time": 361.87,
+    "command_line": ["--buildpath='/dev/shm/biomed/haswell/easybuild'", "--configfiles='easybuild-2018a.cfg'", "--containerpath='/data/leuven/software/biomed/haswell_centos7/2018a/containers'", "--installpath='/data/leuven/software/biomed/haswell_centos7/2018a'", "--module-syntax='Tcl'", "--modules-tool='EnvironmentModulesC'", "--packagepath='/data/leuven/software/biomed/haswell_centos7/2018a/packages'", "--prefix='/data/leuven/software/biomed/haswell_centos7/2018a'", "--repositorypath='/data/leuven/software/biomed/haswell_centos7/2018a/ebfiles_repo'", "--robot='/apps/leuven/sources/easybuild-easyconfigs/easybuild/easyconfigs:/data/leuven/software/biomed/biomed_easyconfigs:/data/leuven/software/biomed/haswell_centos7/2018a/software/EasyBuild/3.9.3/lib/python2.7/site-packages/easybuild_easyconfigs-3.9.3-py2.7.egg/easybuild/easyconfigs'", "--robot-paths='/apps/leuven/sources/easybuild-easyconfigs/easybuild/easyconfigs:/data/leuven/software/biomed/biomed_easyconfigs:'", "--sourcepath='/data/leuven/software/biomed/sources/'", "--try-toolchain='GCCcore,6.4.0'", "--umask='002'", '/data/leuven/software/biomed/haswell_centos7/2018a/software/EasyBuild/3.9.3/lib/python2.7/site-packages/easybuild_easyconfigs-3.9.3-py2.7.egg/easybuild/easyconfigs/s/SQLite/SQLite-3.27.2-GCCcore-8.2.0.eb'],
+    "core_count": 48,
+    "cpu_model": "Intel(R) Xeon(R) CPU E5-2680 v3 @ 2.50GHz",
+    "cpu_speed": 2500.0,
+    "cpu_vendor": "Intel",
+    "easybuild-easyblocks_version": "3.9.3",
+    "easybuild-framework_version": "3.9.3",
+    "gcc_version": "Using built-in specs.; COLLECT_GCC=gcc; COLLECT_LTO_WRAPPER=/vsc-hard-mounts/leuven-apps/haswell/2018a/software/GCCcore/6.4.0/bin/../libexec/gcc/x86_64-pc-linux-gnu/6.4.0/lto-wrapper; Target: x86_64-pc-linux-gnu; Configured with: ../configure --enable-languages=c,c++,fortran --enable-lto --enable-checking=release --disable-multilib --enable-shared=yes --enable-static=yes --enable-threads=posix --enable-gold=default --enable-plugins --enable-ld --with-plugin-ld=ld.gold --prefix=/apps/leuven/haswell/2018a/software/GCCcore/6.4.0 --with-local-prefix=/apps/leuven/haswell/2018a/software/GCCcore/6.4.0 --enable-bootstrap --with-isl=/vsc-hard-mounts/leuven-data/sys/x0076666/eviltempbuild/GCCcore/6.4.0/dummy-/gcc-6.4.0/stage2_stuff; Thread model: posix; gcc version 6.4.0 (GCC) ; ",
+    "glibc_version": "2.17",
+    "hostname": "tier3-p-lcb-1",
+    "install_size": 24972999,
+    "modules_tool": ('EnvironmentModulesC', '/usr/bin/modulecmd', '3.2.10'),
+    "os_name": "centos linux",
+    "os_type": "Linux",
+    "os_version": "7.6.1810",
+    "platform_name": "x86_64-unknown-linux",
+    "python_version": "2.7.5 (default, Oct 30 2018, 23:45:53) ; [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]",
+    "system_gcc_path": "/apps/leuven/haswell/2018a/software/GCCcore/6.4.0/bin/gcc",
+    "system_python_path": "/usr/bin/python",
+    "timestamp": 1565275528,
+    "total_memory": 515557,
+}]

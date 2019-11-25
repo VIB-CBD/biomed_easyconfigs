@@ -1,0 +1,36 @@
+easyblock = 'ConfigureMake'
+
+name = 'HTSlib'
+commit = 'c31dedd'
+commit_date = '20190828'
+version = '1.9-%s' % commit_date
+
+homepage = "http://www.htslib.org/"
+description = """A C library for reading/writing high-throughput sequencing data.
+ This package includes the utilities bgzip and tabix"""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+source_urls = ['https://github.com/samtools/%(namelower)s/archive/']
+sources = ['%s.tar.gz' % commit]
+checksums = ['629fb9735b5c79e36a2acd2c192cd307a22392b314119f56743c0fcca22c9027']
+
+dependencies = [
+    ('zlib', '1.2.11'),
+    ('bzip2', '1.0.8'),
+    ('XZ', '5.2.4'),
+    ('cURL', '7.65.3'),
+    ('Autotools', '20180311'),
+    ('pkg-config', '0.29.2'),
+]
+
+preconfigopts = "if [ ! -f ./configure ]; then autoheader && autoconf -Wno-syntax; fi && "
+
+installopts = ' prefix=%(installdir)s'
+
+sanity_check_paths = {
+    'files': ['bin/bgzip', 'bin/tabix', 'lib/libhts.%s' % SHLIB_EXT],
+    'dirs': [],
+}
+
+moduleclass = 'bio'

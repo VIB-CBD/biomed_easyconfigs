@@ -1,0 +1,23 @@
+easyblock = 'ConfigureMake'
+
+name = 'Grep'
+version = '3.3'
+
+homepage = 'http://www.gnu.org/software/grep/'
+description = """The grep command searches one or more input files for lines containing a match to a specified pattern.
+ By default, grep prints the matching lines."""
+
+toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+
+source_urls = ['http://ftp.gnu.org/gnu/%(namelower)s']
+sources = [SOURCELOWER_TAR_XZ]
+checksums = ['b960541c499619efd6afe1fa795402e4733c8e11ebf9fafccc0bb4bccdc5b514']
+
+builddependencies = [('binutils', '2.32')]
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': ["bin"]
+}
+
+moduleclass = 'tools'

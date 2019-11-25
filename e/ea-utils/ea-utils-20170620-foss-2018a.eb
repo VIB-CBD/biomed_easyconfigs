@@ -1,0 +1,45 @@
+easyblock = 'MakeCp'
+
+name = 'ea-utils'
+version = '20170620'
+
+homepage = 'http://expressionanalysis.github.io/ea-utils/'
+description = """Command-line tools for processing biological sequencing data.
+Barcode demultiplexing, adapter trimming, etc.
+Primarily written to support an Illumina based pipeline - 
+but should work with any FASTQs."""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+toolchainopts = {'pic': True}
+
+source_urls = ['https://github.com/ExpressionAnalysis/ea-utils/archive/']
+sources = ['bd148d4654fe26d8e218ef8f634fb6a6df9fede1.tar.gz']
+
+checksums = ['cd5b71e45d51f9ef97307b28ef6cd2a02af567536d6d33f4b5d2e0b57f31711c']
+
+start_dir = 'clipper'
+
+prebuildopts = "sed -i 's/$(CFLAGS)/$(CFLAGS) $(LDFLAGS) -I./' Makefile && PREFIX=%(installdir)s "
+buildopts = 'fastq-mcf fastq-multx fastq-join fastq-stats fastq-clipper sam-stats varcall'
+
+builddependencies = [
+    ('Perl', '5.26.1'),
+]
+
+dependencies = [
+    ('GSL', '2.5'),
+]
+
+files_to_copy = [([
+    'fastq-mcf', 'fastq-multx', 'fastq-join', 'fastq-stats', 'fastq-clipper',
+    'sam-stats', 'varcall', 'randomFQ', 'alc', 'determine-phred'], 'bin'
+)]
+
+
+sanity_check_paths = {
+    'files': ['bin/fastq-mcf', 'bin/fastq-multx', 'bin/fastq-join', 'bin/fastq-stats',
+              'bin/fastq-clipper', 'bin/sam-stats', 'bin/varcall'],
+    'dirs': []
+}
+
+moduleclass = 'bio'

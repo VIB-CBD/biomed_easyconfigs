@@ -1,0 +1,35 @@
+easyblock = 'CmdCp'
+
+name = 'STAMP'
+
+# Date of specified commit.
+version = '1.3-20170810'
+
+# Commit.
+commit = '159b711'
+
+homepage = 'https://github.com/seqcode/stamp/'
+description = """Cluster-Buster: Finding dense clusters of motifs in DNA sequences"""
+
+source_urls = ['https://github.com/seqcode/stamp/archive/']
+sources = ['%s.tar.gz' % commit]
+checksums = ['6f23bb670277f6a2f2d57cf134a4c45e3afa2bb9545ab1802e2778f0866d1f06']
+
+dependencies = [
+    ('GSL', '2.5'),
+]
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+start_dir = 'src'
+
+cmds_map = [('.*', """$CXX $CXX_FLAGS -O3 -o ../stamp Motif.cpp Alignment.cpp ColumnComp.cpp PlatformSupport.cpp PlatformTesting.cpp Tree.cpp NeuralTree.cpp MultipleAlignment.cpp RandPSSMGen.cpp ProteinDomains.cpp main.cpp -lm -lgsl -lgslcblas""")]
+
+files_to_copy = [(['stamp'], 'bin')]
+
+sanity_check_paths = {
+    'files': ['bin/stamp'],
+    'dirs': [],
+}
+
+moduleclass = 'bio'

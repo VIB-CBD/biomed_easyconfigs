@@ -1,0 +1,36 @@
+easyblock = 'PythonBundle'
+
+name = 'novoSpaRc'
+version = '0.3.7'
+versionsuffix = '-Python-%(pyver)s'
+
+homepage = 'https://github.com/rajewsky-lab/novosparc'
+description = "novoSpaRc predicts locations of single cells in space by solely using single-cell RNA sequencing data. An existing reference database of marker genes is not required, but significantly enhances performance if available."
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+dependencies = [
+    ('Python', '3.7.4', '', ('foss', '2018a')),
+    ('BiomedBundle', '20190901', versionsuffix),
+]
+
+use_pip = True
+
+exts_default_options = {'source_urls': [PYPI_SOURCE]}
+
+exts_list = [
+    ('networkx', '2.4', {
+        'checksums': ['f8f4ff0b6f96e4f9b16af6b84622597b5334bf9cae8cf9b2e42e7985d5c95c64'],
+    }),
+    ('POT', '0.6.0', {
+        'modulename': 'ot',
+        'checksums': ['a0c254825b65bdfb2b9a4594d1876bdb3bd2564caf0bd86401b440e64c0806c0'],
+    }),
+    ('novosparc', version, {
+        'source_tmpl': 'e7e6317b8055a721c5cb4796b61a119dee880b39.tar.gz',
+        'source_urls': ['https://github.com/rajewsky-lab/novosparc/archive/'],
+        'checksums': ['e11f41b2fed028a7e8a1287ed6deaf22d96742c21743211d9b280bba4fae4b4b'],
+    }),
+]
+
+moduleclass = 'bio'

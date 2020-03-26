@@ -22,6 +22,9 @@ dependencies = [
 
 use_pip = True
 
+modextravars = {'JUPYTER_PATH': '~/.local/share/jupyter/:%(installdir)s/share/jupyter/',
+                'JUPYTER_RUNTIME_DIR': '~/.local/share/jupyter/runtime/'}
+
 exts_default_options = {'source_urls': [PYPI_SOURCE]}
 
 # order is important!

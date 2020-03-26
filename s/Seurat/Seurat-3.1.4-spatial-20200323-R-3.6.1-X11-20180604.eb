@@ -1,0 +1,86 @@
+easyblock = 'Bundle'
+
+name = 'Seurat'
+version = '3.1.4'
+versionsuffix = '-spatial-20200323-R-%(rver)s-X11-20180604'
+
+homepage = 'http://satijalab.org/seurat'
+description = "Seurat is an R package designed for QC, analysis, and exploration of single cell RNA-seq data."
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+
+dependencies = [
+    ('R', '3.6.1', '-X11-20180604'),
+    ('R-bundle-Bioconductor', '3.9', '-R-3.6.1-X11-20180604'),
+    ('loomR', '0.2.0-beta', '-R-3.6.1-X11-20180604'),
+    ('plotly', '4.9.0', '-R-3.6.1-X11-20180604'),
+
+]
+
+exts_defaultclass = 'RPackage'
+
+exts_default_options = {
+    'source_urls': [
+        'https://cran.r-project.org/src/contrib/Archive/%(name)s',  # package archive
+        'https://cran.r-project.org/src/contrib/',  # current version of packages
+        'https://cran.freestatistics.org/src/contrib',  # mirror alternative for current packages
+    ],
+    'source_tmpl': '%(name)s_%(version)s.tar.gz',
+}
+
+exts_list = [
+    ('ggrepel', '0.8.2', {
+        'checksums': ['0d01bfc005e9af5e6b57e2a677781424387f38ec208818295eb87dd5867551e1'],
+    }),
+    ('leiden', '0.3.3', {
+        'checksums': ['c2b5e1c061c8bbea494639a0d7f0fa22f5b41ff5fd911409e5f832f3575d06c2'],
+    }),
+    ('RcppAnnoy', '0.0.16', {
+        'checksums': ['d98d5f239039a0f82c19b44abf37c26388bc40e96d573f2058846d736919ca2d'],
+    }),
+    ('rsvd', '1.0.3', {
+        'checksums': ['13560e0fc3ae6927c4cc4d5ad816b1f640a2a445b712a5a612ab17ea0ce179bb'],
+    }),
+    ('globals', '0.12.5', {
+        'checksums': ['1519a7668b4b549c081f60a5f6b71d8d1dc8833f618125f6c0e4caf8b48a48c1'],
+    }),
+    ('listenv', '0.8.0', {
+        'checksums': ['fd2aaf3ff2d8d546ce33d1cb38e68401613975117c1f9eb98a7b41facf5c485f'],
+    }),
+    ('future', '1.16.0', {
+        'checksums': ['b50db0f28712c70b4c6a670d1c86b218e20870cc13b03ac45dc5d929168058f5'],
+    }),
+    ('future.apply', '1.4.0', {
+        'checksums': ['737e5a8e2d0ce2678835f5be15c96d491f690d307662ed6719be41937633f8cd'],
+    }),
+    ('sctransform', '0.2.1', {
+        'checksums': ['d6430a81a66c93da770b1a7c55344df42187321038b4eee80b7066cdd8a7631f'],
+    }),
+    ('RcppParallel', '5.0.0', {
+        'checksums': ['ab41b83bcb65e1782a7a05b57db53ba59ab49bdff3023846e1aef643ee360dd6'],
+    }),
+    ('sitmo', '2.0.1', {
+        'checksums': ['0c90d357af334d5c99c8956739dc12623ddd87dda5efa59f4a43f7393c87ed2a'],
+    }),
+    ('dqrng', '0.2.1', {
+        'checksums': ['e149c105b1db31e7f46b1aebf31d911a109e380923f3696fc56a53197fc1e866'],
+    }),
+    ('uwot', '0.1.8', {
+        'checksums': ['ede6e061b43f9e1337c0132a5334082f4565ec1623bbb0eee1f738034346f0cb'],
+    }),
+    ('patchwork', '1.0.0', {
+        'checksums': ['8bfb59b91775781848f39eedcaaaf92c147e2637f384085fcdd41fc8355b3c63'],
+    }),
+    (name, version, {
+        'checksums': ['716b9a38e7bea7cec180081c22dcf06a7a14919981f4f9462cddc2b0a15c1252'],
+    }),
+]
+
+sanity_check_paths = {
+    'files': [],
+    'dirs': [name],
+}
+
+modextrapaths = {'R_LIBS': ''}
+
+moduleclass = 'bio'

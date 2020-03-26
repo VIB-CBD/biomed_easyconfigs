@@ -1,0 +1,26 @@
+# This file is an EasyBuild reciPY as per https://easybuilders.github.io/easybuild/
+# Author: Pablo Escobar Lopez
+# sciCORE - University of Basel
+# SIB Swiss Institute of Bioinformatics 
+# Updated by: Jiri Furst
+
+easyblock = 'Tarball'
+
+name = 'Julia'
+version = '0.4.7'
+
+homepage = 'https://julialang.org'
+description = "Julia is a high-level, high-performance dynamic programming language for numerical computing"
+
+toolchain = {'name': 'dummy', 'version': 'dummy'}
+
+source_urls = ['https://julialang-s3.julialang.org/bin/linux/x64/%(version_major_minor)s/']
+sources = ['%(namelower)s-%(version)s-linux-x86_64.tar.gz']
+checksums = ['c0bd22fc9859a151749a2fac6a8e00a61e25e06389bcd1d655d6953aad9d76e5']
+
+sanity_check_paths = {
+    'files': ['bin/julia', 'include/julia/julia.h', 'lib/julia/libjulia.so'],
+    'dirs': ['bin', 'etc', 'include', 'lib', 'share']
+}
+
+moduleclass = 'lang'

@@ -1,0 +1,35 @@
+easyblock = 'PackedBinary'
+
+name = 'tsv-utils'
+version = '1.5.0'
+
+homepage = 'https://github.com/eBay/tsv-utils'
+description = """tsv-utils is a set of command line utilities for tabular data files."""
+
+toolchain = SYSTEM
+
+source_urls = ['https://github.com/eBay/%(name)s/releases/download/%(version)s/%(name)s-v%(version)s_linux-x86_64_ldc2.tar.gz']
+sources = ['%(name)s-v%(version)s_linux-x86_64_ldc2.tar.gz']
+checksums = ['9c6ea552248087ef70e7705110ba4f9fe48d134b7eea94ba040f5cce16d25f81']
+extract_sources = True
+
+prepend_to_path = 'extras/scripts'
+
+sanity_check_paths = {
+    'files': [
+        'bin/tsv-uniq',
+        'bin/tsv-pretty',
+        'bin/tsv-select',
+        'bin/tsv-filter',
+        'bin/tsv-append',
+        'bin/keep-header',
+        'bin/tsv-summarize',
+        'bin/tsv-sample',
+        'bin/tsv-join',
+        'bin/csv2tsv',
+        'bin/number-lines'
+    ],
+    'dirs': ['bin', 'extras/scripts']
+}
+
+moduleclass = 'tools'

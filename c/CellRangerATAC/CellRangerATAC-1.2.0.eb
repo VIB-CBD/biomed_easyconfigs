@@ -1,0 +1,25 @@
+easyblock = 'Binary'
+
+name = 'CellRangerATAC'
+version = '1.2.0'
+
+homepage = 'https://support.10xgenomics.com/single-cell-atac'
+description = """Cell Ranger ATAC is a set of analysis pipelines that process Chromium Single Cell ATAC data."""
+
+toolchain = SYSTEM
+
+# Download manually from https://support.10xgenomics.com/single-cell-atac/software/downloads/latest
+sources = ['cellranger-atac-%(version)s.tar.gz']
+checksums = ['346ef2105b6921ba509db1f7cbc2b2e2f2d89c48708dc7fc206f45e49f8e88b5']
+extract_sources = True
+
+dependencies = [('bcl2fastq2', '2.20.0', '', ('foss', '2018a'))]
+
+sanity_check_paths = {
+'files': ['cellranger-atac', 'cellranger-atac-shell'],
+'dirs': ['bwa', 'cellranger-atac-cs', 'lz4', 'martian-cs', 'miniconda-atac-cs'],
+}
+
+keepsymlinks = True
+
+moduleclass = 'bio'

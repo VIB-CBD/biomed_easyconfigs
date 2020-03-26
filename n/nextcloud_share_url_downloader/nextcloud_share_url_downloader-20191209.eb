@@ -1,8 +1,8 @@
 easyblock = 'BinariesTarball'
 
 name = 'nextcloud_share_url_downloader'
-commit = 'a722727'
-commit_date = '20191106'
+commit = 'cfabed3'
+commit_date = '20191209'
 version = '%s' % commit_date
 
 homepage = 'https://github.com/aertslab/nextcloud_share_url_downloader'
@@ -13,7 +13,7 @@ toolchain = SYSTEM
 
 source_urls = ['https://github.com/aertslab/%(namelower)s/archive/']
 sources = ['%s.tar.gz' % commit]
-checksums = ['2f24f001ef4da62e04f1744c2db98d660c8be223c9850acd16fcc7c10f1bfcbe']
+checksums = ['284bbe78d769f2c85329c77cf487f0198ae3756d9854fb5859a6016adb76263c']
 
 postinstallcmds = [
     "rm %(installdir)s/bin/{README.md,LICENSE}",

@@ -1,0 +1,27 @@
+easyblock = 'Binary'
+
+name = "Vartrix"
+version = "1.1.8"
+
+homepage = 'https://github.com/10XGenomics/vartrix'
+description = """VarTrix is a software tool for extracting single cell variant information
+from 10x Genomics single cell data. VarTrix will take a set of previously defined variant
+calls and use that to identify those variants in the single cell data. VarTrix does not
+perform variant calling. VarTrix is useful for evaluating heterogeneity within a sample,
+which means that the types of variants that will be useful are either somatic or contained
+within a copy number variant (CNV) event."""
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+source_urls = ['https://github.com/10XGenomics/vartrix/releases/download/v%(version)s/']
+sources = ['vartrix_linux']
+checksums = ['881e4d8e353d1900c7eb4d5304299c1913179ea42ae18f7a0e90a95d8d28783c']
+
+dependencies = []
+
+sanity_check_paths = {
+    'files': ['vartrix_linux'],
+    'dirs': []
+}
+
+moduleclass = 'tools'

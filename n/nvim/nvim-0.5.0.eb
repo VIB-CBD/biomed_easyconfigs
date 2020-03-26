@@ -1,0 +1,20 @@
+easyblock = 'PackedBinary'
+
+name = 'nvim'
+version = '0.5.0'
+
+homepage = 'https://neovim.io/'
+description = """Neovim is a Vim-based text editor engineered for extensibility and usability"""
+
+toolchain = SYSTEM
+
+source_urls = ['https://github.com/neovim/neovim/releases/download/nightly/v%(version)s/']
+sources = ['nvim-linux64.tar.gz']
+checksums = ['30440b0eb4eb0adbf09c458891e81880c9efe5245b52316e9af1c08136088e6a']
+
+sanity_check_paths = {
+    'files': ['bin/nvim', 'share/man/man1/nvim.1'],
+    'dirs': []
+}
+
+moduleclass = 'tools'

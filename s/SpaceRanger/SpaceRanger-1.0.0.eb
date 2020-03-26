@@ -1,0 +1,27 @@
+easyblock = 'Binary'
+
+name = 'SpaceRanger'
+version = '1.0.0'
+
+homepage = 'https://support.10xgenomics.com/spatial-gene-expression/software/overview/welcome'
+description = """Space Ranger contains a set of analysis pipelines that perform
+sample demultiplexing, image alignment, barcode processing, and gene counting for
+Visium Spatial Gene Expression data."""
+
+toolchain = SYSTEM
+
+# Download manually from https://support.10xgenomics.com/spatial-gene-expression/software/downloads/latest
+sources = [SOURCELOWER_TAR_GZ]
+checksums = ['31b53516b7ca810ad456d5b344a1dbc5f083f9368acad4cd65e2f783a4ca341b']
+extract_sources = True
+
+dependencies = [('bcl2fastq2', '2.20.0', '', ('foss', '2018a'))]
+
+keepsymlinks = True
+
+sanity_check_paths = {
+    'files': ['spaceranger', 'bin/spaceranger'],
+    'dirs': ['bin', 'external', 'lib', 'mro', 'tenkit'],
+}
+
+moduleclass = 'bio'

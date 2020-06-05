@@ -8,7 +8,7 @@ description = """Neovim is a Vim-based text editor engineered for extensibility 
 
 toolchain = SYSTEM
 
-source_urls = ['https://github.com/neovim/neovim/releases/download/nightly/v%(version)s/']
+source_urls = ['https://github.com/neovim/neovim/releases/download/nightly/']
 sources = ['nvim-linux64.tar.gz']
 checksums = ['30440b0eb4eb0adbf09c458891e81880c9efe5245b52316e9af1c08136088e6a']
 

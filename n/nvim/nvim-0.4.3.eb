@@ -1,7 +1,7 @@
 easyblock = 'PackedBinary'
 
 name = 'nvim'
-version = '0.3.8'
+version = '0.4.3'
 
 homepage = 'https://neovim.io/'
 description = """Neovim is a Vim-based text editor engineered for extensibility and usability"""

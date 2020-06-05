@@ -1,0 +1,35 @@
+easyblock = 'CmdCp'
+
+name = 'Cluster-Buster'
+
+# Date of specified commit.
+version = '20200507'
+
+# Commit.
+commit = 'ac1d33cffff0c276216450ebced471595cf01488'
+
+# Git commit info for requested commit: git log -1 --format='%ci  commit: %h' ${commit}
+git_commit_info = '2020-05-07 10:30:42 -0400  commit: ac1d33c'
+
+homepage = 'https://github.com/weng-lab/cluster-buster/'
+description = """Cluster-Buster: Finding dense clusters of motifs in DNA sequences"""
+
+source_urls = ['https://github.com/weng-lab/cluster-buster/archive/']
+sources = ['%s.tar.gz' % commit]
+checksums = ['dfd6a1fadb87d3bd3e3ecbeddb6c47b03c4a9e4e4cb280217eadef4638f1d992']
+
+#toolchain = {'name': 'foss', 'version': '2018a'}
+toolchain = {'name': 'GCCcore', 'version': '6.4.0'}
+
+start_dir = ''
+
+cmds_map = [('.*', """$CXX $CXXFLAGS -Wall -std=c++0x -O3 -D GIT_COMMIT_INFO='"%s"' -D NDEBUG -o cbust *.cpp""" % git_commit_info)]
+
+files_to_copy = [(['cbust'], 'bin')]
+
+sanity_check_paths = {
+    'files': ['bin/cbust'],
+    'dirs': [],
+}
+
+moduleclass = 'bio'

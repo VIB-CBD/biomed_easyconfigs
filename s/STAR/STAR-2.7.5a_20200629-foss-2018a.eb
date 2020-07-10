@@ -1,0 +1,36 @@
+easyblock = 'MakeCp'
+
+name = 'STAR'
+version = '2.7.5a_20200629'
+
+homepage = 'https://github.com/alexdobin/STAR'
+description = "STAR aligns RNA-seq reads to a reference genome using uncompressed suffix arrays."
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+toolchainopts = {'openmp': True}
+
+source_urls = ['https://github.com/alexdobin/STAR/archive/']
+sources = ['1552aa0798befcb7cd7d5f80dda22358dc91f226.tar.gz']
+checksums = ['eac09b3cb435a7f1b8922cdea59c9ac72cdcd0e728b6797d6724136d4203afa2']
+
+dependencies = [
+    ('zlib', '1.2.11'),
+]
+
+start_dir = 'source'
+
+buildopts = ' STAR && make STARlong'
+
+parallel = 1
+
+files_to_copy = [
+    (['source/STAR', 'source/STARlong'], 'bin'),
+    'CHANGES.md', 'doc', 'extras', 'LICENSE', 'README.md', 'RELEASEnotes.md',
+]
+
+sanity_check_paths = {
+    'files': ['bin/STAR', 'bin/STARlong'],
+    'dirs': [],
+}
+
+moduleclass = 'bio'

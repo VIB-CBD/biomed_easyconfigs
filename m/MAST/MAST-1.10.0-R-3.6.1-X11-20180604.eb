@@ -1,0 +1,50 @@
+easyblock = "Bundle"
+
+name = "MAST"
+version = "1.10.0"
+versionsuffix = "-R-%(rver)s-X11-20180604"
+
+homepage = "https://github.com/RGLab/MAST/"
+description = """MAST fits two-part, generalized linear models that are specially adapted for bimodal and/or zero-inflated single cell gene expression data."""
+
+toolchain = {"name": "foss", "version": "2018a"}
+
+dependencies = [
+    ("R", "3.6.1", "-X11-20180604"),
+    ("R-bundle-Bioconductor", "3.9", "-R-3.6.1-X11-20180604"),
+    ("loomR", "0.2.0-beta", "-R-3.6.1-X11-20180604"),
+    ("Seurat", "3.1.0", "-R-3.6.1-X11-20180604"),
+]
+
+exts_default_options = {
+    "source_urls": [
+        "https://bioconductor.org/packages/3.9/bioc/src/contrib/",
+        "https://bioconductor.org/packages/3.9/bioc/src/contrib/Archive/%(name)s",
+        "https://bioconductor.org/packages/3.9/data/annotation/src/contrib/",
+        "https://bioconductor.org/packages/3.9/data/experiment/src/contrib/",
+        "https://cran.r-project.org/src/contrib/Archive/%(name)s",  # package archive
+        "https://cran.r-project.org/src/contrib/",  # current version of packages
+        "https://cran.freestatistics.org/src/contrib",  # mirror alternative for current packages
+    ],
+    "source_tmpl": "%(name)s_%(version)s.tar.gz",
+}
+
+exts_defaultclass = "RPackage"
+exts_filter = ("R -q --no-save", "library(%(ext_name)s)")
+
+# CRAN packages on which these Bioconductor packages depend are available in R module on which this depends
+# !! order of packages is important !!
+# packages updated on Aug 13th 2019
+exts_list = [
+    ("blme", "1.0-4", {"checksums": ["c2bfc6b7804cdc1f1b95cd6ce215a13a7c7aa5833ad9cfe8900e4c44045842b1"],}),
+    (name, version, {"checksums": ["9de219f8910a48f4811d1554ca93be6ae71dd76837bb426a9a250143c69d5838"],}),
+]
+
+modextrapaths = {"R_LIBS": ""}
+
+sanity_check_paths = {
+    "files": [],
+    "dirs": [name],
+}
+
+moduleclass = "bio"

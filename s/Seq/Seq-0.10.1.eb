@@ -1,0 +1,25 @@
+easyblock = 'BinariesTarball'
+
+name = 'Seq'
+version = '0.10.1'
+
+homepage = 'https://seq-lang.org/'
+description = """Seq-lang: a Python dialect for bioinformatics"""
+
+toolchain = SYSTEM
+
+source_urls = ['https://github.com/seq-lang/seq/releases/download/v%(version)s/']
+sources = ['seq-linux-x86_64.tar.gz']
+checksums = ['06d85b643f2f6e33dcdf644dc34aa050e5b36c1e70ac1714cdec5840f24ef19e']
+
+postinstallcmds = [
+    "rsync -a %(builddir)s/seq-deploy/ %(installdir)s",
+    "mv %(installdir)s/lib/seq/libseq.so %(installdir)s/lib/seq/libseqrt.so %(installdir)s/lib/seq/libomp.so %(installdir)s/lib",
+]
+
+sanity_check_paths = {
+    'files': ['bin/seqc', 'lib/libseq.so', 'lib/libseqrt.so', 'lib/libomp.so'],
+    'dirs': ['lib/seq/stdlib']
+}
+
+moduleclass = 'lang'

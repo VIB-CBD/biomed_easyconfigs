@@ -1,0 +1,33 @@
+
+easyblock = 'ConfigureMake'
+
+name = 'zlib-ng'
+version = '2.0.1'
+
+homepage = 'https://github.com/zlib-ng'
+
+description = """
+ zlib data compression library for the next generation systems.
+"""
+
+toolchain = SYSTEM
+toolchainopts = {'pic': True}
+
+source_urls = ['https://github.com/zlib-ng/zlib-ng/archive/']
+sources = ['%(version)s.tar.gz']
+checksums = ['8599893f9b78bf979c1a1d6549b730367c9186560c6879590354998cc55428cf']
+
+configure_cmd = 'INSTALL_UTILS=1 ./configure --zlib-compat'
+
+# need to take care of $CFLAGS ourselves with dummy toolchain
+# we need to add -fPIC, but should also include -O* option to avoid
+# compiling with -O0 (default for GCC)
+#buildopts = 'CFLAGS="-O2 -fPIC"'
+
+sanity_check_paths = {
+    'files': ['include/zconf.h', 'include/zlib.h', 'lib/libz.a',
+              'lib/libz.%s' % SHLIB_EXT],
+    'dirs': [],
+}
+
+moduleclass = 'lib'

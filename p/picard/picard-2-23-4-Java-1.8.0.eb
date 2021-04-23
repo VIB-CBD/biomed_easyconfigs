@@ -1,0 +1,25 @@
+easyblock = 'JAR'
+
+name = 'picard'
+version = '2.23.4'
+versionsuffix = '-Java-%(javaver)s'
+
+homepage = 'https://broadinstitute.github.io/picard/'
+description = """Picard is a set of command line tools for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF."""
+
+toolchain = {'name': 'dummy', 'version': ''}
+
+source_urls = ['https://github.com/broadinstitute/picard/releases/download/%(version)s']
+sources = ['%(name)s.jar']
+checksums = ['2040051927535a41540df18a80ae1beeaf05d0bd713a2b8ab1172a72eea6ff80']
+
+dependencies = [('Java', '1.8.0', '', True)]
+
+sanity_check_paths = {
+    'files': ['picard.jar'],
+    'dirs': [],
+}
+
+modloadmsg = "To execute picard run: java -jar $EBROOTPICARD/%(name)s.jar"
+
+moduleclass = 'bio'

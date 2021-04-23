@@ -1,0 +1,24 @@
+easyblock = 'Binary'
+
+name = 'CellRangerARC'
+version = '1.0.0'
+
+homepage = 'https://support.10xgenomics.com/single-cell-multiome-atac-gex'
+description = """Cell Ranger ARC is a set of analysis pipelines that process Single Cell Multiome ATAC + Gene Expression software suite consists of Cell Ranger ARC for the analysis and Loupe Browser for the visualization of chromatin accessibility and 3' gene expression data from the same cell produced by the 10x platform."""
+toolchain = SYSTEM
+
+# Download manually from https://support.10xgenomics.com/single-cell-multiome-atac-gex/software/downloads/latest
+sources = ['cellranger-arc-%(version)s.tar.gz']
+checksums = ['3fcfa4ceb92acb908bcfdfe9ee8c89e271f165e99adafff1a87a3b80c5111a58']
+extract_sources = True
+
+dependencies = [('bcl2fastq2', '2.20.0', '', ('foss', '2018a'))]
+
+sanity_check_paths = {
+'files': ['cellranger-arc'],
+'dirs': ['bin', 'external', 'lib', 'mro'],
+}
+
+keepsymlinks = True
+
+moduleclass = 'bio'

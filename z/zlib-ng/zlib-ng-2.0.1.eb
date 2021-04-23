@@ -1,0 +1,33 @@
+easyblock = 'CMakeMake'
+
+name = 'zlib-ng'
+version = '2.0.1'
+
+homepage = 'https://github.com/zlib-ng'
+
+description = """
+ zlib data compression library for the next generation systems.
+"""
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+toolchainopts = {'pic': True}
+
+source_urls = ['https://github.com/zlib-ng/zlib-ng/archive/']
+sources = ['%(version)s.tar.gz']
+checksums = ['8599893f9b78bf979c1a1d6549b730367c9186560c6879590354998cc55428cf']
+
+builddependencies = [('CMake', '3.15.2'),
+                     ('binutils', '2.32'),
+]
+
+configopts = "-DZLIB_COMPAT=ON "
+configopts += "-DINSTALL_UTILS=ON "
+configopts += "-DNO_QUICK_STRATEGY=ON "
+
+sanity_check_paths = {
+    'files': ['include/zconf.h', 'include/zlib.h', 'lib/libz.a',
+              'lib/libz.%s' % SHLIB_EXT],
+    'dirs': [],
+}
+
+moduleclass = 'lib'

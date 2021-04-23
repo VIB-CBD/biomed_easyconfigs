@@ -1,0 +1,30 @@
+easyblock = 'MakeCp'
+
+name = 'libdeflate'
+version = '1.7'
+
+homepage = 'https://github.com/ebiggers/libdeflate/'
+description = "libdeflate is a library for fast, whole-buffer DEFLATE-based compression and decompression."
+
+toolchain = {'name': 'foss', 'version': '2018a'}
+toolchainopts = {'pic': True}
+
+source_urls = ['https://github.com/ebiggers/%(name)s/archive/refs/tags/']
+sources = ['v%(version)s.tar.gz']
+checksums = ['a5e6a0a9ab69f40f0f59332106532ca76918977a974e7004977a9498e3f11350']
+
+builddependencies = [('binutils', '2.32')]
+
+files_to_copy = [
+     (["libdeflate.a", "libdeflate.so"], "lib"),
+     (["libdeflate.h"], "include")
+]
+
+postinstallcmds = ["cd %%(installdir)s/lib; ln -s libdeflate.so libdeflate.so.0"]
+
+sanity_check_paths = {
+    'files': ['lib/libdeflate.a', 'lib/libdeflate.so', 'include/libdeflate.h'],
+    'dirs': [],
+}
+
+moduleclass = 'lib'
